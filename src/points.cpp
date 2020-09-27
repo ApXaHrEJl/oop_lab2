@@ -5,10 +5,24 @@
 #define SCREEN_YSIZE 480
 #define SPEED 8
 
-tPoint::tPoint()
+/*tPoint::tPoint()
 {
     x = rand() % SCREEN_XSIZE;
     y = rand() % SCREEN_YSIZE;
+    set_dir(fmod(double(rand()),2 * M_PI));
+}*/
+
+tPoint::tPoint()
+{
+    x = 0;
+    y = 0;
+    dir = 0;
+}
+
+void tPoint::spawn_figure(int screen_x1, int screen_y1, int screen_width, int screen_height)
+{
+    x = screen_x1 + (rand() % screen_width);
+    y = screen_y1 + (rand() % screen_height);
     set_dir(fmod(double(rand()),2 * M_PI));
 }
 
@@ -52,11 +66,21 @@ void tPoint::rmove()
     check_reflection();
 }
 
+void tPoint::emove()
+{
+    set_dir(dir + 0.2);
+    if (dir >= (2 * M_PI)) {
+        set_dir(0);
+        }
+    set_x(x + (SPEED * cos(dir)));
+    set_y(y + (SPEED * sin(dir)));
+}
+
 void tPoint::check_x1()
 {
-    if (x < 0)
+    if (x < 4)
     {
-        set_x(0);
+        set_x(4);
         if (dir < M_PI)
         {
             set_dir(M_PI - dir);
@@ -68,9 +92,9 @@ void tPoint::check_x1()
 
 void tPoint::check_x2()
 {
-    if (x > SCREEN_XSIZE)
+    if (x > SCREEN_XSIZE - 4)
     {
-        set_x(SCREEN_XSIZE);
+        set_x(SCREEN_XSIZE - 4);
         if (dir < M_PI)
         {
             set_dir(M_PI - dir);
@@ -82,9 +106,9 @@ void tPoint::check_x2()
 
 void tPoint::check_y1()
 {
-    if (y < 0)
+    if (y < 4)
     {
-        set_y(0);
+        set_y(4);
         if (dir <= M_PI * 0.5)
         {
             set_dir((2 * M_PI) - dir);
@@ -96,9 +120,9 @@ void tPoint::check_y1()
 
 void tPoint::check_y2()
 {
-    if (y > SCREEN_YSIZE)
+    if (y > SCREEN_YSIZE - 4)
     {
-        set_y(SCREEN_YSIZE);
+        set_y(SCREEN_YSIZE - 4);
         if (dir <= M_PI * 1.5)
         {
             set_dir(M_PI - (dir - M_PI));
@@ -110,20 +134,20 @@ void tPoint::check_y2()
 
 void tPoint::check_xy1()
 {
-    if (x<0 && y<0)
+    if (x<4 && y<4)
     {
-        set_x(0);
-        set_y(0);
+        set_x(4);
+        set_y(4);
         set_dir(5.5);
     }
 }
 
 void tPoint::check_xy2()
 {
-    if (x>SCREEN_XSIZE && y>SCREEN_YSIZE)
+    if (x > (SCREEN_XSIZE - 4) && y > (SCREEN_YSIZE - 4))
     {
-        set_x(SCREEN_XSIZE);
-        set_y(SCREEN_YSIZE);
+        set_x(SCREEN_XSIZE - 4);
+        set_y(SCREEN_YSIZE - 4);
         set_dir(3.92);
     }
 }
