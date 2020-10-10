@@ -106,6 +106,16 @@ void tEllipse::spawn_figure(int screen_x1, int screen_y1, int screen_width, int 
     r2 = 3;
 }
 
+void tEllipse::draw_figure()
+{
+    gfx_color(rand() % 256, rand() % 256, rand() % 256);
+    double a = M_PI / 180;
+    int j = 1;
+    for(double i = a; i < 2 * M_PI; j++, i = a * j){
+        gfx_point((cos(i) * r1) + x, (sin(i) * r2) + y);
+    }
+}
+
 void tPoint::draw_figure()
 {
     gfx_color(rand() % 256, rand() % 256, rand() % 256);
