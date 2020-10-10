@@ -4,7 +4,6 @@ bin/ex1: obj/main.o obj/points.o obj/figures.o obj/gfx.o obj/screen.o
 	mkdir bin
 	g++ -Wall -Werror obj/main.o obj/points.o obj/gfx.o obj/screen.o obj/figures.o -o bin/ex1 -lX11 -lm
 
-
 obj/screen.o: src/screen.cpp 
 	g++ -I include -Wall -Werror -c src/screen.cpp -o obj/screen.o -lX11
 

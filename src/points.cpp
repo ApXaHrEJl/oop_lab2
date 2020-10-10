@@ -5,13 +5,6 @@
 #define SCREEN_YSIZE 480
 #define SPEED 8
 
-/*tPoint::tPoint()
-{
-    x = rand() % SCREEN_XSIZE;
-    y = rand() % SCREEN_YSIZE;
-    set_dir(fmod(double(rand()),2 * M_PI));
-}*/
-
 tPoint::tPoint()
 {
     x = 0;

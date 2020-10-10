@@ -7,30 +7,16 @@
 
 int main()
 {    
-    tLine* lines = new tLine[N];
-    for (int i = 0; i < N; i++) {
-        lines[i].spawn_figure(0,0,SCREEN_XSIZE,SCREEN_YSIZE);
+    tLine line; 
+    tTriangle triangle; 
+    tRectangle rectangle; 
+    tRhombus rhombus;
+    tCircle circle;
+    tEllipse ellipse;
+    tPoint* figures[] = { &line, &triangle, &rectangle, &rhombus, &circle, &ellipse };
+    for (int i = 0; i < 6; i++) {
+        figures[i]->spawn_figure(0,0,SCREEN_XSIZE,SCREEN_YSIZE);
     }
-    tTriangle* triangles = new tTriangle[N];
-    for (int i = 0; i < N; i++) {
-        triangles[i].spawn_figure(0,0,SCREEN_XSIZE,SCREEN_YSIZE);
-    }
-    tRectangle* rectangles = new tRectangle[N];
-    for (int i = 0; i < N; i++) {
-        rectangles[i].spawn_figure(0,0,SCREEN_XSIZE,SCREEN_YSIZE);
-    }
-    tRhombus* rhombuses = new tRhombus[N];
-    for (int i = 0; i < N; i++) {
-        rhombuses[i].spawn_figure(0,0,SCREEN_XSIZE,SCREEN_YSIZE);
-    }
-    tCircle* circles = new tCircle[N];
-    for (int i = 0; i < N; i++) {
-        circles[i].spawn_figure(0,0,SCREEN_XSIZE,SCREEN_YSIZE);
-    }
-    tEllipse* ellipses = new tEllipse[N];
-    for (int i = 0; i < N; i++) {
-        ellipses[i].spawn_figure(0,0,SCREEN_XSIZE,SCREEN_YSIZE);
-    }
-    screen_show(lines, triangles, rectangles, rhombuses, circles, ellipses);
+    screen_show(figures);
     return 0;
 }
